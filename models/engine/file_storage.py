@@ -78,13 +78,19 @@ class FileStorage:
         or None if not found
         """
         full_objs_list = self.all(cls)
-        # print(full_objs_list)
         for obj in full_objs_list.values():
-            print(obj)
             if obj.id == id:
                 return obj
         return None
 
     def count(self, cls=None):
+        """get the count of objs
+
+        cls: class
+        Return: Returns the number of objects in storage
+        matching the given class. If no class is passed,
+        returns the count of all objects in storage.
+        """
+
         objs = self.all(cls)
         return len(objs) if objs is not None else 0
