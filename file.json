@@ -1,18 +1,4 @@
 {
-    "State.2a9ac7f5-cab9-44b9-a015-ab5b5041ac05": {
-        "name": "California",
-        "created_at": "2024-03-22T08:52:33.062486",
-        "updated_at": "2024-03-22T08:52:33.062595",
-        "id": "2a9ac7f5-cab9-44b9-a015-ab5b5041ac05",
-        "__class__": "State"
-    },
-    "State.5f948ada-cefd-48d7-a5ba-df39d85cc6f3": {
-        "name": "Arizona",
-        "created_at": "2024-03-22T08:52:33.062943",
-        "updated_at": "2024-03-22T08:52:33.062996",
-        "id": "5f948ada-cefd-48d7-a5ba-df39d85cc6f3",
-        "__class__": "State"
-    },
     "City.d72e72ed-552b-45db-b29c-44eddfac5a5b": {
         "state_id": "2a9ac7f5-cab9-44b9-a015-ab5b5041ac05",
         "name": "Napa",
@@ -36,5 +22,34 @@
         "updated_at": "2024-03-22T08:52:33.064010",
         "id": "0927eb7e-0c29-4f48-bc01-351533ffc754",
         "__class__": "City"
+    },
+    "State.2a9ac7f5-cab9-44b9-a015-ab5b5041ac05": {
+        "name": "Updated State",
+        "created_at": "2024-03-22T08:52:33.062486",
+        "updated_at": "2024-03-28T19:36:00.299276",
+        "id": "2a9ac7f5-cab9-44b9-a015-ab5b5041ac05",
+        "__class__": "State"
+    },
+    "State.5f948ada-cefd-48d7-a5ba-df39d85cc6f3": {
+        "name": "Arizona",
+        "created_at": "2024-03-22T08:52:33.062943",
+        "updated_at": "2024-03-22T08:52:33.062996",
+        "id": "5f948ada-cefd-48d7-a5ba-df39d85cc6f3",
+        "__class__": "State"
+    },
+    "State.572e00cb-ac84-433a-8bca-d97b546bf57a": {
+        "name": "New State",
+        "created_at": "2024-03-28T19:34:21.966950",
+        "updated_at": "2024-03-28T19:34:21.967052",
+        "id": "572e00cb-ac84-433a-8bca-d97b546bf57a",
+        "__class__": "State"
+    },
+    "State.56036514-c538-45dc-a296-b279ecd5dd4d": {
+        "name": "New State",
+        "countrt": "sudan",
+        "created_at": "2024-03-28T19:35:03.024371",
+        "updated_at": "2024-03-28T19:35:03.024448",
+        "id": "56036514-c538-45dc-a296-b279ecd5dd4d",
+        "__class__": "State"
     }
 }
