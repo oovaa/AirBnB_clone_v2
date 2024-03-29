@@ -8,8 +8,8 @@ from models import storage
 
 @app_views.route('/users', methods=['GET'])
 def get_users():
-    users = storage.get(User)
-    return jsonify([user.to_dict() for user in users.values])
+    users = storage.all(User)
+    return jsonify([user.to_dict() for user in users.values()])
 
 
 @app_views.route('/users/<user_id>', methods=['GET'])
