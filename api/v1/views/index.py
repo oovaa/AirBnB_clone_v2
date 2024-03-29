@@ -12,6 +12,16 @@ from models.place import Place
 from models.review import Review
 
 
+@app_views.route('/status', methods=['GET'])
+def status():
+    """Endpoint that retrieves the status"""
+
+    result = {
+        "status": "OK"
+    }
+    return jsonify(result)
+
+
 @app_views.route('/stats', methods=['GET'])
 def stats():
     """Endpoint that retrieves the number of each objects by type"""
