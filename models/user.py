@@ -1,5 +1,6 @@
 #!/usr/bin/python
 """ holds class User"""
+from hashlib import md5
 import models
 from models.base_model import BaseModel, Base
 from os import getenv
@@ -27,3 +28,5 @@ class User(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initializes user"""
         super().__init__(*args, **kwargs)
+        self.password = md5(self.password.encode()).hexdigest()
+        self.save()

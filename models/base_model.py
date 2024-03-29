@@ -60,6 +60,8 @@ class BaseModel:
 
     def to_dict(self):
         """returns a dictionary containing all keys/values of the instance"""
+        from models.engine.file_storage import FileStorage
+
         new_dict = self.__dict__.copy()
         if "created_at" in new_dict:
             new_dict["created_at"] = new_dict["created_at"].strftime(time)
@@ -68,6 +70,9 @@ class BaseModel:
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
+        if 'password' in new_dict and not isinstance(models.storage,
+                                                     FileStorage):
+            del new_dict['password']
         return new_dict
 
     def delete(self):

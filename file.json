@@ -62,13 +62,15 @@
     "User.f500bb1e-faae-4307-9e3b-c7ef389ecada": {
         "id": "f500bb1e-faae-4307-9e3b-c7ef389ecada",
         "created_at": "2024-03-28T22:15:06.289167",
-        "updated_at": "2024-03-28T22:15:06.289218",
+        "updated_at": "2024-03-29T10:30:27.253266",
+        "password": "74be16979710d4c4e7c6647856088456",
         "__class__": "User"
     },
     "User.98bfac37-d096-4722-a7f7-d748681a4037": {
         "id": "98bfac37-d096-4722-a7f7-d748681a4037",
         "created_at": "2024-03-28T22:15:08.827252",
-        "updated_at": "2024-03-28T22:15:08.827293",
+        "updated_at": "2024-03-29T10:30:27.253827",
+        "password": "74be16979710d4c4e7c6647856088456",
         "__class__": "User"
     },
     "Place.56dbd77b-1170-4304-ac54-e3a32d3a9630": {
@@ -102,13 +104,27 @@
         "id": "fa707fc3-454a-40b3-ac00-303449c28da1",
         "created_at": "2024-03-29T09:44:33.737301",
         "updated_at": "2024-03-29T09:44:33.737347",
-        "__class__": "Amenity",
-        "name": "wifi"
+        "name": "wifi",
+        "__class__": "Amenity"
     },
     "Amenity.21d6715e-0b14-41d6-bae4-4268982784de": {
         "id": "21d6715e-0b14-41d6-bae4-4268982784de",
         "created_at": "2024-03-29T09:44:34.308575",
         "updated_at": "2024-03-29T09:44:34.308621",
         "__class__": "Amenity"
+    },
+    "User.d5d7378a-e801-4b55-ac01-08bb143bb434": {
+        "id": "d5d7378a-e801-4b55-ac01-08bb143bb434",
+        "created_at": "2024-03-29T10:28:45.864337",
+        "updated_at": "2024-03-29T10:30:27.256415",
+        "password": "74be16979710d4c4e7c6647856088456",
+        "__class__": "User"
+    },
+    "User.62048e34-c9b0-428d-aeac-cccc4435fb0f": {
+        "id": "62048e34-c9b0-428d-aeac-cccc4435fb0f",
+        "created_at": "2024-03-29T10:35:24.269870",
+        "updated_at": "2024-03-29T10:35:24.271602",
+        "password": "d41d8cd98f00b204e9800998ecf8427e",
+        "__class__": "User"
     }
 }
