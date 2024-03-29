@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Module for endpoint (route) status"""
 
 from api.v1.views import app_views
 from models import storage
@@ -13,6 +14,7 @@ from models.review import Review
 
 @app_views.route('/stats', methods=['GET'])
 def stats():
+    """Endpoint that retrieves the number of each objects by type"""
     result = {
         "amenities": storage.count(Amenity),
         "cities": storage.count(City),
