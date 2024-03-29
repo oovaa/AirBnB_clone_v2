@@ -8,9 +8,8 @@ from api.v1.views import app_views
 from models import storage
 
 
-@app_views.route('/places/<string:place_id>/reviews', methods=['GET'],
-                 strict_slashes=False)
-def get_reviews(place_id):
+@app_views.route('/places/<string:place_id>/reviews', methods=['GET'])
+def get_all_reviews(place_id):
     """Get reviews by place_id"""
     p = storage.get(Place, place_id)
     if p is None:
