@@ -15,11 +15,13 @@ CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 @app.teardown_appcontext
 def teardown_db(exception):
+    """Closes the database again at the end of the request."""
     storage.close()
 
 
 @app.errorhandler(404)
 def not_found(error):
+    """Error handler for 404 not found."""
     return jsonify({"error": "Not found"}), 404
 
 
