@@ -3,7 +3,6 @@
 Views for AirBnB_clone_v3
 """
 
-
 from flask import Blueprint
 from api.v1.views.index import *
 from api.v1.views.states import *
