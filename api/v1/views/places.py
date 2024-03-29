@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+"""Places view module"""
 from flask import jsonify, abort, request
 from models.place import Place
 from models.city import City
@@ -8,6 +10,7 @@ from models import storage
 
 @app_views.route('/cities/<city_id>/places', methods=['GET'])
 def get_city_places(city_id):
+    """Get all places in a city."""
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
@@ -16,6 +19,7 @@ def get_city_places(city_id):
 
 @app_views.route('/places/<place_id>', methods=['GET'])
 def get_place(place_id):
+    """Get a specific place by its id."""
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
@@ -24,6 +28,7 @@ def get_place(place_id):
 
 @app_views.route('/places/<place_id>', methods=['DELETE'])
 def delete_place(place_id):
+    """Delete a place by its id."""
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
@@ -34,6 +39,7 @@ def delete_place(place_id):
 
 @app_views.route('/cities/<city_id>/places', methods=['POST'])
 def create_place(city_id):
+    """Create a new place in a city."""
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
@@ -55,6 +61,7 @@ def create_place(city_id):
 
 @app_views.route('/places/<place_id>', methods=['PUT'])
 def update_place(place_id):
+    """Update a place by its id."""
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
