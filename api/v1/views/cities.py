@@ -50,7 +50,7 @@ def create_city(state_id):
 
     js = request.get_json()
     obj = City(**js)
-    obj.state_id = state_id
+    obj.state_id = state.id
     obj.save()
     return jsonify(obj.to_dict()), 201
 
