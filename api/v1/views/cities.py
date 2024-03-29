@@ -23,9 +23,10 @@ def get_city_state(state_id):
 def get_city(city_id):
     """Returns information about a single city"""
     city = storage.get(City, city_id)
-    if city is None:
-        abort(404)
-    return jsonify(city.to_dict())
+    if city:
+        return jsonify(city.to_dict())
+    else:
+        return abort(404)
 
 
 @app_views.route('/cities/<string:city_id>', methods=['DELETE'])
