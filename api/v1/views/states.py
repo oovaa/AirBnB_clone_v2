@@ -2,13 +2,13 @@
 """This module handles the HTTP methods for states"""
 
 from flask import request
-from flask import json, jsonify, abort, request
+from flask import jsonify, abort, request
 from models.state import State
 from api.v1.views import app_views
 from models import storage
 
 
-@app_views.route('/states', methods=['GET'])
+@app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_states():
     """Returns a list of all states in the database"""
     states = storage.all(State)
@@ -35,7 +35,7 @@ def delete_state(state_id):
     return jsonify({}), 200
 
 
-@app_views.route('/states', methods=['POST'])
+@app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
     """Create a new state with data sent in the request"""
     data_dict = request.get_json()
