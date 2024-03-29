@@ -23,11 +23,14 @@ def get_city(city_id):
 
 @app_views.route('/cities/<city_id>', methods=['DELETE'])
 def delete_city(city_id):
+    pass
 
 
 @app_views.route('/states/<state_id>/cities', methods=['POST'])
 def create_city(state_id):
+    pass
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'])
 def update_city(city_id):
+    pass

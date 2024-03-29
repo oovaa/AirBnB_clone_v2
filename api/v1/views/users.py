@@ -22,11 +22,14 @@ def get_user(user_id):
 
 @app_views.route('/users/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
+    pass
 
 
 @app_views.route('/users', methods=['POST'])
 def create_user():
+    pass
 
 
 @app_views.route('/users/<user_id>', methods=['PUT'])
 def update_user(user_id):
+    pass
