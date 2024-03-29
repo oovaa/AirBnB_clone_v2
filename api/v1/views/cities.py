@@ -46,10 +46,10 @@ def delete_city(city_id):
 def create_city(state_id):
     """Creates a new city in the database"""
     if request.content_type != 'application/json':
-        return abort(404,'Not a JSON')
+        return abort(404, 'Not a JSON')
     state = storage.get(State, state_id)
     if not state:
-        return abort (404)
+        return abort(404)
     if not request.get_json():
         return jsonify(400, 'Not a JSON')
     data = request.get_json()
