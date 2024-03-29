@@ -2,8 +2,6 @@
 """Users view module"""
 
 from flask import jsonify, abort, request
-from models.city import City
-from models.state import State
 from models.user import User
 from api.v1.views import app_views
 from models import storage
@@ -38,14 +36,14 @@ def delete_user(user_id):
 
 @app_views.route('/users', methods=['POST'])
 def create_user():
-    """Create a new user with data from the request."""
-    if not request.get_json():
-        return jsonify({"error": "Not a JSON"}), 400
-    if 'email' not in request.get_json():
-        return jsonify({"error": "Missing email"}), 400
-    if 'password' not in request.get_json():
-        return jsonify({"error": "Missing password"}), 400
+    """Create a new user from the request data."""
     js = request.get_json()
+    if not js:
+        return jsonify({"error": "Not a JSON"}), 400
+    if 'email' not in js:
+        return jsonify({"error": "Missing email"}), 400
+    if 'password' not in js:
+        return jsonify({"error": "Missing password"}), 400
     new_user = User(**js)
     new_user.save()
     return jsonify(new_user.to_dict()), 201
@@ -54,12 +52,13 @@ def create_user():
 @app_views.route('/users/<user_id>', methods=['PUT'])
 def update_user(user_id):
     """Update a user given its id and data from the request."""
-    if not request.get_json():
+    js = request.get_json()
+    if not js:
         return jsonify({"error": "Not a JSON"}), 400
     u = storage.get(User, user_id)
     if u is None:
         abort(404)
-    for k, v in request.get_json().items():
+    for k, v in js.items():
         if k not in ['id', 'email', 'created_at', 'updated_at']:
             setattr(u, k, v)
     storage.save()
