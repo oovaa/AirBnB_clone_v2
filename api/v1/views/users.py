@@ -7,7 +7,7 @@ from models import storage
 
 
 @app_views.route('/users', methods=['GET'])
-def get_user():
+def get_users():
     users = storage.get(User)
     return jsonify([user.to_dict() for user in users.values])
 
