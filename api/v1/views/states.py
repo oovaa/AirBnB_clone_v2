@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 """This module handles the HTTP methods for states"""
 
-from flask import request
+from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models.state import State
-from api.v1.views import app_views
 from models import storage
 
 
