@@ -58,7 +58,7 @@ class BaseModel:
         models.storage.new(self)
         models.storage.save()
 
-    def to_dict(self):
+    def to_dict(self, include_password=True):
         """returns a dictionary containing all keys/values of the instance"""
         from models.engine.file_storage import FileStorage
 
@@ -70,8 +70,9 @@ class BaseModel:
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
-        if 'password' in new_dict and not isinstance(models.storage,
-                                                     FileStorage):
+        if 'password' in new_dict and (not include_password
+                                       or not isinstance(models.storage,
+                                                         FileStorage)):
             del new_dict['password']
         return new_dict
 
