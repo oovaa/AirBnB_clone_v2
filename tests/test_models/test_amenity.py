@@ -8,7 +8,7 @@ import inspect
 import models
 from models import amenity
 from models.base_model import BaseModel
-import pep8
+import pycodestyle as pep8
 import unittest
 Amenity = amenity.Amenity
 
@@ -59,6 +59,7 @@ class TestAmenityDocs(unittest.TestCase):
 
 class TestAmenity(unittest.TestCase):
     """Test the Amenity class"""
+
     def test_is_subclass(self):
         """Test that Amenity is a subclass of BaseModel"""
         amenity = Amenity()

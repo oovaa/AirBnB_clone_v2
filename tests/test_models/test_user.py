@@ -8,7 +8,7 @@ import inspect
 import models
 from models import user
 from models.base_model import BaseModel
-import pep8
+import pycodestyle as pep8
 import unittest
 User = user.User
 
@@ -59,6 +59,7 @@ class TestUserDocs(unittest.TestCase):
 
 class TestUser(unittest.TestCase):
     """Test the User class"""
+
     def test_is_subclass(self):
         """Test that User is a subclass of BaseModel"""
         user = User()
