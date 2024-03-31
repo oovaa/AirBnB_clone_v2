@@ -4,6 +4,7 @@ Contains class BaseModel
 """
 
 from datetime import datetime
+from hashlib import md5
 import models
 from os import getenv
 import sqlalchemy
@@ -70,8 +71,12 @@ class BaseModel:
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
-        if getenv("HBNB_TYPE_STORAGE") == "db" and "password" in new_dict:
-            del new_dict['password']
+        if not include_password or getenv("HBNB_TYPE_STORAGE") == "db":
+            new_dict.pop("password", None)
+        else:
+            # Hash the password if it exists
+            if "password" in new_dict:
+                new_dict["password"] = md5(new_dict["password"].encode()).hexdigest()
         return new_dict
 
     def delete(self):
