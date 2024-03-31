@@ -46,13 +46,12 @@ def delete_city(city_id):
 def create_city(state_id):
     """Creates a new city in the database"""
     if request.content_type != 'application/json':
-        return abort(404, 'Not a JSON')
+        return jsonify({"error": "Not a JSON"}), 400
     state = storage.get(State, state_id)
     if not state:
         return abort(404)
-    if not request.get_json(silent=True):
-        return jsonify(400, 'Not a JSON')
-    data = request.get_json(silent=True)
+    if not (data := request.get_json(silent=True)):
+        return jsonify({"error": "Not a JSON"}), 400
     if 'name' not in data:
         return abort(400, 'Missing name')
     data['state_id'] = state_id
@@ -66,13 +65,11 @@ def create_city(state_id):
 def update_city(city_id):
     """Updates a city in the database"""
     if request.content_type != 'application/json':
-        return abort(404, 'Not a JSON')
+        return jsonify({"error": "Not a JSON"}), 400
     city = storage.get(City, city_id)
     if city:
-        if not request.get_json(silent=True):
-            return abort(400, 'Not a JSON')
-
-        data = request.get_json(silent=True)
+        if not (data := request.get_json(silent=True)):
+            return jsonify({"error": "Not a JSON"}), 400
         ignore_keys = ['id', 'state_id', 'created_at', 'updated_at']
 
         for key, value in data.items():
