@@ -38,7 +38,7 @@ def delete_amenity(amenity_id):
                  strict_slashes=False)
 def create_amenity():
     """Create a new amenity with data from the request"""
-    data_dict = request.get_json()
+    data_dict = request.get_json(silent=True)
     if not data_dict:
         abort(400, description="Not a JSON")
     if 'name' not in data_dict:
@@ -54,7 +54,7 @@ def update_amenity(amenity_id):
     amenity = storage.get(Amenity, amenity_id)
     if amenity is None:
         abort(404)
-    data_dict = request.get_json()
+    data_dict = request.get_json(silent=True)
     if not data_dict:
         abort(400, description="Not a JSON")
     for k, v in data_dict.items():

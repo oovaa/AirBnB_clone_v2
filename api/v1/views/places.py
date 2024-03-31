@@ -48,7 +48,7 @@ def create_place(city_id):
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
-    data_dict = request.get_json()
+    data_dict = request.get_json(silent=True)
     if not data_dict:
         abort(400, description="Not a JSON")
     if 'user_id' not in data_dict:
@@ -70,7 +70,7 @@ def update_place(place_id):
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
-    data_dict = request.get_json()
+    data_dict = request.get_json(silent=True)
     if not data_dict:
         abort(400, description="Not a JSON")
     for k, v in data_dict.items():
@@ -83,10 +83,10 @@ def update_place(place_id):
 @app_views.route('/places_search', methods=['POST'], strict_slashes=False)
 def search_places():
     """Search for places."""
-    if request.get_json() is None:
+    if request.get_json(silent=True) is None:
         return jsonify({"error": "Not a JSON"}), 400
 
-    data = request.get_json()
+    data = request.get_json(silent=True)
     states = data.get('states', [])
     cities = data.get('cities', [])
     amenities = data.get('amenities', [])

@@ -37,7 +37,7 @@ def delete_user(user_id):
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
 def create_user():
     """Create a new user from the request data."""
-    js = request.get_json()
+    js = request.get_json(silent=True)
     if not js:
         return jsonify({"error": "Not a JSON"}), 400
     if 'email' not in js:
@@ -52,7 +52,7 @@ def create_user():
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
 def update_user(user_id):
     """Update a user given its id and data from the request."""
-    js = request.get_json()
+    js = request.get_json(silent=True)
     if not js:
         return jsonify({"error": "Not a JSON"}), 400
     u = storage.get(User, user_id)
