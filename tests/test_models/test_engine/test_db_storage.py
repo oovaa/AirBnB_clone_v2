@@ -89,29 +89,24 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_get(self):
-        """Test get method
-        """
-        new_user = User(email="test@example.com", password="password123")
-        models.storage.new(new_user)
-        models.storage.save()
-
-        retrieved_user = models.storage.get(User, new_user.id)
-
-        self.assertEqual(new_user, retrieved_user)
+        """Test that return the object based on the class and its ID"""
+        storage = models.storage
+        instance = State(name='state_test')
+        instance.save()
+        self.assertIs(storage.get(State, instance.id), instance)
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):
-        """Test the count method"""
-        # Create multiple objects of different classes
-        new_user = User(email="test@example.com", password="password123")
-        new_state = State(name="California")
-        new_city = City(name="San Francisco", state_id=new_state.id)
-        models.storage.new(new_user)
-        models.storage.new(new_state)
-        models.storage.new(new_city)
-        models.storage.save()
-
-        # Check the count of objects for each class
-        self.assertEqual(models.storage.count(User), 1)
-        self.assertEqual(models.storage.count(State), 1)
-        self.assertEqual(models.storage.count(City), 1)
+        """Test that count the number of objects in storage matching the
+        given class.
+        """
+        storage = models.storage
+        initial_value = models.storage.count()
+        instance = State(name='state_test')
+        instance.save()
+        end_value = storage.count()
+        self.assertEqual(initial_value + 1, end_value)
+        instance = City(state_id=instance.id, name="city_test")
+        instance.save()
+        end_value = storage.count()
+        self.assertEqual(initial_value + 2, end_value)

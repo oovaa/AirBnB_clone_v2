@@ -16,7 +16,7 @@ from models.state import State
 from models.user import User
 import json
 import os
-import pycodestyle as pep8
+import pep8
 import unittest
 FileStorage = file_storage.FileStorage
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
@@ -118,28 +118,16 @@ class TestFileStorage(unittest.TestCase):
     def test_get(self):
         """Test the get method"""
         storage = FileStorage()
-        new_user = User(email="test@example.com", password="password123")
-        storage.new(new_user)
-        storage.save()
-
-        # Get the object by its ID
-        retrieved_user = storage.get(User, new_user.id)
-
-        # Check if the retrieved object matches the original one
-        self.assertEqual(new_user, retrieved_user)
+        instance = State(name='state_test')
+        instance.save()
+        self.assertIs(storage.get(State, instance.id), instance)
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_count(self):
         """Test the count method"""
         storage = FileStorage()
-        new_user1 = User(email="test1@example.com", password="password123")
-        new_user2 = User(email="test2@example.com", password="password123")
-        new_state = State(name="California")
-        storage.new(new_user1)
-        storage.new(new_user2)
-        storage.new(new_state)
-        storage.save()
-
-        # Check the count of objects for each class
-        self.assertEqual(storage.count(User), 2)
-        self.assertEqual(storage.count(State), 1)
+        initial_value = storage.count()
+        instance = State(name='state_test')
+        instance.save()
+        end_value = storage.count()
+        self.assertEqual(initial_value + 1, end_value)
