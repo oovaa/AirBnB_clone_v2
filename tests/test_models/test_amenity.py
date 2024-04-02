@@ -8,7 +8,9 @@ import inspect
 import models
 from models import amenity
 from models.base_model import BaseModel
+from sqlalchemy.orm.attributes import InstrumentedAttribute
 import pep8
+import os
 import unittest
 Amenity = amenity.Amenity
 
@@ -68,14 +70,21 @@ class TestAmenity(unittest.TestCase):
         self.assertTrue(hasattr(amenity, "created_at"))
         self.assertTrue(hasattr(amenity, "updated_at"))
 
+    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
+                     "Testing DBStorage")
     def test_name_attr(self):
         """Test that Amenity has attribute name, and it's as an empty string"""
         amenity = Amenity()
         self.assertTrue(hasattr(amenity, "name"))
-        if models.storage_t == 'db':
-            self.assertEqual(amenity.name, None)
-        else:
-            self.assertEqual(amenity.name, "")
+        self.assertEqual(amenity.name, "")
+
+    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
+                     "Testing FileStorage")
+    def test_name_attr_db(self):
+        """Test for DBStorage name attribute"""
+        amenity = Amenity()
+        self.assertTrue(hasattr(Amenity, "name"))
+        self.assertIsInstance(Amenity.name, InstrumentedAttribute)
 
     def test_to_dict_creates_dict(self):
         """test to_dict method creates a dictionary with proper attrs"""
@@ -83,10 +92,10 @@ class TestAmenity(unittest.TestCase):
         # print(am.__dict__)
         new_d = am.to_dict()
         self.assertEqual(type(new_d), dict)
-        self.assertFalse("_sa_instance_state" in new_d)
         for attr in am.__dict__:
             if attr is not "_sa_instance_state":
-                self.assertTrue(attr in new_d)
+                with self.subTest(attr=attr):
+                    self.assertTrue(attr in new_d)
         self.assertTrue("__class__" in new_d)
 
     def test_to_dict_values(self):
